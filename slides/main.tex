@@ -1,0 +1,64 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{default}
+\usefonttheme{professionalfonts}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs,graphicx,microtype}
+\usepackage{hyperref}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.78\paperwidth,ht=2.6ex,dp=1.1ex,leftskip=1.6em]{frametitle}%
+      \usebeamerfont{headline}\insertshorttitle%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.22\paperwidth,ht=2.6ex,dp=1.1ex,rightskip=1.6em]{frametitle}%
+      \hfill\raisebox{-.55ex}{\includegraphics[height=2.4ex]{units.jpg}}%
+    \end{beamercolorbox}%
+  }%
+  \vskip.2ex\hrule height .3pt%
+}
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.82\paperwidth,ht=2.2ex,dp=.8ex,leftskip=1.6em]{frametitle}%
+      \usebeamerfont{headline}\href{mailto:sylvio.barbonjunior@units.it}{sylvio.barbonjunior@units.it}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.18\paperwidth,ht=2.2ex,dp=.8ex,rightskip=1.6em]{frametitle}%
+      \hfill\insertframenumber/\inserttotalframenumber%
+    \end{beamercolorbox}%
+  }%
+}
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{frametitle}{fg=black,bg=white}
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{structure}{fg=black}
+\setbeamerfont{headline}{size=\scriptsize}
+\setbeamertemplate{itemize item}{--}
+\setbeamertemplate{itemize subitem}{\textbullet}
+\graphicspath{{figures/}}
+
+\title[Evaluating Explainable AI: From Quality Properties to Metrics]{Evaluating Explainable AI}
+\subtitle{From Quality Properties to Metrics}
+\author[Sylvio Barbon Junior]{\texorpdfstring{Sylvio Barbon Junior\\\href{mailto:sylvio.barbonjunior@units.it}{sylvio.barbonjunior@units.it}}{Sylvio Barbon Junior, sylvio.barbonjunior@units.it}}
+\institute{Research seminar}
+\date{2026}
+\titlegraphic{\includegraphics[height=1.15cm]{units.jpg}}
+
+\begin{document}
+\frame{\titlepage}
+\input{sections/01_motivation}
+\input{sections/02_landscape}
+\input{sections/03_vocabulary}
+\input{sections/04_co12}
+\input{sections/05_faithfulness}
+\input{sections/06_robustness_complexity}
+\input{sections/07_human}
+\input{sections/08_benchmark}
+\input{sections/09_takeaways}
+\begin{frame}[allowframebreaks]{References}
+\bibliographystyle{abbrv}
+\bibliography{references}
+\end{frame}
+\end{document}

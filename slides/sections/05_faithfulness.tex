@@ -1,0 +1,60 @@
+\begin{frame}{Faithfulness: perturb important features}
+Let $a=E(f,x)$, where $a_i$ is feature importance. A perturbation-based test asks whether changing features with large $|a_i|$ changes $f(x)$.
+\[
+\Delta_i=f(x)-f(x_{\setminus i})
+\]
+The replacement rule is part of the metric.
+\end{frame}
+
+\begin{frame}{Faithfulness correlation}
+\[
+\operatorname{FC}(x)=\operatorname{corr}_{S}\left(\sum_{i\in S}a_i,\; f(x)-f(x_{\setminus S})\right)
+\]
+Positive association is evidence that attribution mass tracks output change under the sampled subsets and replacement protocol.
+\end{frame}
+
+\begin{frame}{Deletion curve}
+Rank features by $|a_i|$, then progressively replace the most important ones. A steep score decrease early in the curve is consistent with a useful ranking under this deletion rule.
+\centering\includegraphics[width=.72\linewidth,height=.58\textheight,keepaspectratio]{deletion_curve.pdf}
+\end{frame}
+
+\begin{frame}{Deletion AUC and AOPC}
+\[
+\mathrm{AUC}_{del}=\int_0^1 f(x^{(\alpha)})\,d\alpha
+\qquad
+\mathrm{AOPC}=\frac1K\sum_{k=1}^K[f(x)-f(x^{(k)})]
+\]
+For a score-preserving output and a fixed deletion rule, lower deletion AUC or higher AOPC is generally preferred. Always state direction and target output.
+\end{frame}
+
+\begin{frame}{Comprehensiveness and sufficiency}
+\[
+\mathrm{Comp}(x,S)=f(x)-f(x_{\setminus S})\qquad
+\mathrm{Suff}(x,S)=|f(x)-f(x_S)|
+\]
+\begin{itemize}
+  \item Remove selected features: does the score change? Higher drop is generally preferred.
+  \item Keep selected features: does the score remain? Smaller difference is generally preferred.
+\end{itemize}
+\centering\includegraphics[width=.7\linewidth,height=.35\textheight,keepaspectratio]{comprehensiveness_sufficiency.pdf}
+\end{frame}
+
+\begin{frame}{Infidelity}
+\[
+\operatorname{Infid}(E,f,x)=\mathbb{E}_{I}\left[(I^TE(f,x)-(f(x)-f(x-I)))^2\right]
+\]
+It compares attribution-predicted change with actual model change. The perturbation distribution $I$ defines what changes are tested.\cite{infidelity}
+\end{frame}
+
+\begin{frame}{The perturbation problem}
+\centering\includegraphics[width=.55\linewidth,height=.63\textheight,keepaspectratio]{ood_perturbation.pdf}
+\begin{itemize}
+  \item What does ``feature absence'' mean: zero, mean, median, or conditional sample?
+  \item If replacement leaves the data manifold, are we measuring the explanation or model extrapolation?
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Baseline sensitivity is a result}
+\centering\includegraphics[width=.78\linewidth,height=.67\textheight,keepaspectratio]{baseline_sensitivity.pdf}
+\small Measured on one held-out instance; the curve changes when the replacement convention changes.
+\end{frame}

@@ -1,0 +1,37 @@
+\begin{frame}{Co-12: a quality map, not a scorecard}
+\centering\includegraphics[width=.88\linewidth]{co12_structure.pdf}
+\small Based on the Content, Presentation, and User organization in the evaluation literature.\cite{nauta}
+\end{frame}
+
+\begin{frame}{Co-12: questions to ask}
+\small
+\begin{tabular}{ll}
+\toprule
+Content & Presentation / User\\
+\midrule
+Correctness & Compactness: concise enough?\\
+Completeness & Composition: appropriate form?\\
+Consistency, continuity & Confidence: uncertainty represented?\\
+Contrastivity & Context: useful for this task?\\
+Covariate complexity & Coherence: aligns with domain knowledge?\\
+ & Controllability: user can interact?\\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+\begin{frame}{One property, multiple metrics}
+\begin{center}
+Correctness / faithfulness\\[.5em]
+\begin{tabular}{ccc}
+Deletion & Faithfulness correlation & Infidelity\\
+Insertion & Randomization checks & Synthetic / white-box checks
+\end{tabular}
+\end{center}
+Different operationalizations expose different assumptions and failure modes.\cite{quantus}
+\end{frame}
+
+\begin{frame}{Properties can conflict}
+\centering\Large A faithful explanation may be verbose.\\[.6em]
+A compact explanation may omit relevant behavior.\\[.6em]
+\normalsize The evaluation objective must state which trade-offs are acceptable.
+\end{frame}

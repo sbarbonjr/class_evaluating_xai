@@ -1,0 +1,40 @@
+\begin{frame}{A provocation}
+\centering
+\Large ``SHAP is better than LIME.''\\[1em]
+\normalsize Better according to what?\\[0.5em]
+Faithfulness? Stability? Compactness? Human usefulness?
+\end{frame}
+
+\begin{frame}{Predictive performance is not explanation quality}
+\[
+\text{Does } f \text{ predict correctly?}
+\qquad\neq\qquad
+\text{Does } E \text{ describe } f \text{ correctly?}
+\]
+\begin{itemize}
+  \item Predictive accuracy compares model outputs with target labels.
+  \item Faithfulness concerns the explanation relative to model behavior.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{What is being evaluated?}
+\[
+x \xrightarrow{f} f(x) \xrightarrow{E} e
+\qquad\qquad Q(e,f,x,D,\theta_Q)
+\]
+\begin{itemize}
+  \item $x$: input; $f$: predictive model; $E$: explanation method; $e$: explanation.
+  \item $Q$ is a procedure with data, parameters, and assumptions.
+\end{itemize}
+\centering\medskip We evaluate an explanation under a protocol, not in isolation.
+\end{frame}
+
+\begin{frame}{A good explanation is not one thing}
+\begin{itemize}
+  \item Faithful but difficult to understand.
+  \item Plausible but unfaithful to the model.
+  \item Compact but incomplete.
+  \item Stable but irrelevant to the user's task.
+\end{itemize}
+The scientific claim determines which trade-offs matter.
+\end{frame}

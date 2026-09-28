@@ -1,0 +1,36 @@
+\begin{frame}{Consistency is not continuity}
+\begin{description}
+  \item[Consistency] Equivalent input/model conditions yield equivalent explanations.
+  \item[Continuity] Similar inputs with similar predictions yield similar explanations.
+\end{description}
+Repeated seeds and equivalent implementations probe consistency; nearby inputs probe continuity.
+\end{frame}
+
+\begin{frame}{Max-sensitivity}
+\[
+\mathrm{Sens}_{max}=\max_{\|x'-x\|\le r}\|E(f,x)-E(f,x')\|
+\]
+The radius, input norm, explanation distance, and validity of perturbed inputs all matter.
+\centering\includegraphics[width=.36\linewidth]{robustness_neighborhood.pdf}
+\end{frame}
+
+\begin{frame}{Compactness is not correctness}
+\[
+a=[0.91,0.04,0.03,0.01,0.01]\qquad b=[0.21,0.20,0.20,0.20,0.19]
+\]
+\centering Which is easier to inspect? Does that make it more faithful?\\
+\includegraphics[width=.62\linewidth]{complexity_examples.pdf}
+\end{frame}
+
+\begin{frame}{Entropy and sparsity}
+Normalize $p_i=|a_i|/\sum_j|a_j|$ and compute
+\[
+H(a)=-\sum_i p_i\log p_i.
+\]
+Lower entropy indicates concentration; higher Gini indicates concentration. Neither establishes that the explanation is correct or useful.
+\end{frame}
+
+\begin{frame}{Sanity checks}
+\centering\includegraphics[width=.9\linewidth]{randomization_check.pdf}
+If explanations barely change after model parameter randomization, model dependence is questionable. Passing a sanity check is necessary evidence, not proof of correctness.\cite{sanity}
+\end{frame}

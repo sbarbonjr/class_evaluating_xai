@@ -1,0 +1,33 @@
+\begin{frame}{The literature uses overlapping language}
+Explainability, interpretability, transparency, faithfulness, stability, robustness, comprehensibility, and actionability are related but not interchangeable.
+\medskip
+
+\centering A shared vocabulary makes claims testable.
+\end{frame}
+
+\begin{frame}{Four levels}
+\centering\includegraphics[width=.9\linewidth]{notion_property_metric.pdf}
+\begin{description}
+  \item[Notion] Broad conceptual idea.
+  \item[Property] Desired quality of an explanation.
+  \item[Metric] Formal operationalization.
+  \item[Measurement] Observed value under a protocol.
+\end{description}
+\end{frame}
+
+\begin{frame}{From property to measurement}
+\begin{block}{Claim} The explanation is faithful to the predictive model.
+\end{block}
+\begin{block}{One operationalization} Deletion AUC; replace top-ranked features by the training median.
+\end{block}
+\begin{block}{Measurement} 0.31 on a named model, dataset, target, baseline, and seed.
+\end{block}
+A scalar without its protocol is incomplete evidence.
+\end{frame}
+
+\begin{frame}{The evaluation chain}
+\[
+\boxed{\text{Goal}\to\text{Claim}\to\text{Property}\to\text{Metric}\to\text{Protocol}\to\text{Evidence}}
+\]
+The metric is selected after the claim and property, not before them.
+\end{frame}

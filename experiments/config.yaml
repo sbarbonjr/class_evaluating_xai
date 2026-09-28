@@ -1,0 +1,8 @@
+seed: 42
+benchmark:
+  n_instances: 25
+  n_subsets: 30
+  deletion_steps: 20
+  sensitivity_perturbations: 10
+  sensitivity_radius: 0.05
+  baseline: median

@@ -1,0 +1,27 @@
+\begin{thebibliography}{1}
+
+\bibitem{sanity}
+J.~Adebayo, J.~Gilmer, M.~Muelly, I.~Goodfellow, M.~Hardt, and B.~Kim.
+\newblock Sanity checks for saliency maps.
+\newblock In {\em Advances in Neural Information Processing Systems}, 2018.
+
+\bibitem{quantus}
+A.~Hedstr{"o}m, L.~Weber, D.~Krakowczyk, D.~Bareeva, F.~Motzkus, W.~Samek,
+  S.~Lapuschkin, and M.~M.-C. H{"o}hne.
+\newblock Quantus: An explainable ai toolkit for responsible evaluation of
+  neural network explanations and beyond.
+\newblock {\em Journal of Open Source Software}, 2023.
+
+\bibitem{nauta}
+M.~Nauta, J.~Trienes, S.~Pathak, E.~Nguyen, C.~Peters, Y.~Schmitt,
+  J.~Schl{"o}tterer, M.~Van~Keulen, and C.~Seifert.
+\newblock From anecdotal evidence to quantitative evaluation methods: A
+  systematic review on evaluating explainable ai.
+\newblock {\em ACM Computing Surveys}, 2023.
+
+\bibitem{infidelity}
+C.-K. Yeh, C.-Y. Hsieh, A.~Suggala, D.~I. Inouye, and P.~Ravikumar.
+\newblock On the (in)fidelity and sensitivity of explanations.
+\newblock In {\em Advances in Neural Information Processing Systems}, 2019.
+
+\end{thebibliography}

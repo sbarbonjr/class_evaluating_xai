@@ -1,0 +1,14 @@
+name: class_evaluating_xai
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.11
+  - matplotlib>=3.8
+  - numpy>=1.26
+  - pandas>=2.1
+  - scikit-learn>=1.4
+  - scipy>=1.11
+  - pytest>=8.0
+  - pip
+  - pip:
+      - nbformat>=5.9

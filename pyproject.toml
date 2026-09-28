@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "class-evaluating-xai"
+version = "0.1.0"
+description = "Reproducible teaching materials for evaluating explainable AI"
+requires-python = ">=3.11"
+dependencies = [
+    "matplotlib>=3.8",
+    "numpy>=1.26",
+    "pandas>=2.1",
+    "PyYAML>=6.0",
+    "scikit-learn>=1.4",
+    "scipy>=1.11",
+]
+
+[project.urls]
+Repository = "https://github.com/sbarbonjr/class_evaluating_xai.git"
+
+[project.optional-dependencies]
+dev = ["nbformat>=5.9", "pytest>=8.0"]
+xai = ["lime>=0.2.0.1", "shap>=0.45", "quantus>=0.6"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
