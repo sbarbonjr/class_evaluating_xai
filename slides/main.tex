@@ -4,8 +4,9 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amsmath,amssymb,mathtools}
-\usepackage{booktabs,graphicx,microtype}
+\usepackage{array,booktabs,graphicx,microtype}
 \usepackage{hyperref}
+\usepackage{tikz}
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{headline}{%
   \leavevmode%
@@ -38,6 +39,43 @@
 \setbeamertemplate{itemize item}{--}
 \setbeamertemplate{itemize subitem}{\textbullet}
 \graphicspath{{figures/}}
+\definecolor{contentblue}{RGB}{50,83,116}
+\definecolor{presentationteal}{RGB}{38,125,117}
+\definecolor{usergold}{RGB}{178,119,28}
+
+\newcommand{\ContentIcon}{%
+\tikz[baseline=-.55ex,x=1ex,y=1ex,line width=.12ex]{%
+  \draw[contentblue,rounded corners=.15ex] (0,0) rectangle (1.55,1.9);
+  \draw[contentblue] (.48,1.72) rectangle (1.08,1.98);
+  \foreach \y in {.45,.95,1.45}{%
+    \draw[contentblue] (.25,\y) -- (.42,\y-.17) -- (.72,\y+.18);
+    \draw[contentblue] (.88,\y) -- (1.32,\y);
+  }%
+}}
+\newcommand{\PresentationIcon}{%
+\tikz[baseline=-.55ex,x=1ex,y=1ex,line width=.12ex]{%
+  \draw[presentationteal,rounded corners=.12ex] (0,0) rectangle (1.75,1.9);
+  \draw[presentationteal] (.22,1.18) rectangle (.72,1.58);
+  \draw[presentationteal] (.9,1.45) -- (1.48,1.45);
+  \draw[presentationteal] (.9,1.18) -- (1.48,1.18);
+  \draw[presentationteal] (.25,.28) -- (.25,.82);
+  \draw[presentationteal] (.55,.28) -- (.55,.6);
+  \draw[presentationteal] (.85,.28) -- (.85,.98);
+  \draw[presentationteal] (1.15,.28) -- (1.15,.72);
+}}
+\newcommand{\UserIcon}{%
+\tikz[baseline=-.55ex,x=1ex,y=1ex,line width=.12ex]{%
+  \draw[usergold] (.75,1.35) circle (.32);
+  \draw[usergold,rounded corners=.35ex] (.15,.05) rectangle (1.35,.92);
+  \draw[usergold] (1.55,1.42) -- (2.05,1.42);
+  \draw[usergold] (1.65,1.16) -- (2.15,1.16);
+}}
+\newcommand{\PerspectiveTag}[2]{\raisebox{-.2ex}{#1}\,\textbf{#2}}
+\newcommand{\PerspectiveLegend}{%
+  \PerspectiveTag{\ContentIcon}{Content}\hspace{1.4em}%
+  \PerspectiveTag{\PresentationIcon}{Presentation}\hspace{1.4em}%
+  \PerspectiveTag{\UserIcon}{User}%
+}
 
 \title[Evaluating Explainable AI: From Quality Properties to Metrics]{Evaluating Explainable AI}
 \subtitle{From Quality Properties to Metrics}

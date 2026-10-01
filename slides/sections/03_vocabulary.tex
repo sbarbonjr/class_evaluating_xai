@@ -2,17 +2,62 @@
 Explainability, interpretability, transparency, faithfulness, stability, robustness, comprehensibility, and actionability are related but not interchangeable.
 \medskip
 
+\begin{block}{Regulatory vocabulary: EU AI Act}
+\small
+The AI Act frequently uses \textbf{transparency}, \textbf{information to deployers}, \textbf{interpretation of outputs}, and human oversight language. In Recital 27, transparency is linked to traceability and explainability; this is related to XAI, but not the same as a metric definition.
+\end{block}
+
 \centering A shared vocabulary makes claims testable.
 \end{frame}
 
+\begin{frame}{EU AI Act: application timeline}
+\scriptsize
+\begin{tikzpicture}[
+  x=1cm,y=1cm,
+  milestone/.style={circle,draw=black,very thick,fill=white,minimum size=5.2mm,inner sep=0pt},
+  active/.style={circle,draw=black,very thick,fill=orange!75,minimum size=5.2mm,inner sep=0pt},
+  date/.style={font=\bfseries\small,align=left,text=black},
+  note/.style={font=\scriptsize,align=left,text width=2.25cm}
+]
+\draw[black,very thick] (0,.2) -- (11.4,.2);
+
+\node[milestone] (m1) at (0,.2) {};
+\node[milestone] (m2) at (2.7,.2) {};
+\node[milestone] (m3) at (5.4,.2) {};
+\node[active] (m4) at (8.1,.2) {};
+\node[milestone] (m5) at (10.8,.2) {};
+
+\node[date,anchor=north west] at (-.12,-.25) {2 Feb 2025};
+\node[note,anchor=north west] at (-.12,-.72) {Prohibited practices and AI literacy obligations start to apply.};
+
+\node[date,anchor=north west] at (2.58,-.25) {2 Aug 2025};
+\node[note,anchor=north west] at (2.58,-.72) {Rules for general-purpose AI models, including foundation models.};
+
+\node[date,anchor=north west] at (5.28,-.25) {2 Aug 2026};
+\node[note,anchor=north west] at (5.28,-.72) {General application date; transparency duties for AI interaction and synthetic content.};
+
+\node[date,anchor=north west,text=orange!80!black] at (7.98,-.25) {2 Dec 2027};
+\node[note,anchor=north west] at (7.98,-.72) {High-risk systems in Annex III, including credit scoring and other sensitive uses.};
+
+\node[date,anchor=north west] at (10.68,-.25) {2 Aug 2028};
+\node[note,anchor=north west] at (10.68,-.72) {AI embedded in already regulated products, such as medical devices and machinery.};
+\end{tikzpicture}
+
+\vfill
+\footnotesize Sources: Regulation (EU) 2024/1689; Digital Omnibus on AI, Regulation (EU) 2026/1744, in force since 27 July 2026.
+\end{frame}
+
 \begin{frame}{Four levels}
-\centering\includegraphics[width=.9\linewidth]{notion_property_metric.pdf}
-\begin{description}
-  \item[Notion] Broad conceptual idea.
-  \item[Property] Desired quality of an explanation.
-  \item[Metric] Formal operationalization.
-  \item[Measurement] Observed value under a protocol.
-\end{description}
+\centering\includegraphics[width=.78\linewidth,height=.28\textheight,keepaspectratio]{notion_property_metric.pdf}
+\small
+\begin{tabular}{@{}p{.18\linewidth}p{.34\linewidth}p{.40\linewidth}@{}}
+\textbf{Level} & \textbf{Meaning} & \textbf{Examples}\\
+\midrule
+Notion & Broad idea & transparency, explainability, interpretability\\
+Property & Desired quality & faithfulness, stability, compactness, coherence\\
+Metric & Operational test & deletion AUC, AOPC, max-sensitivity, entropy\\
+Measurement & Protocol-bound value & deletion AUC $=0.31$ with median baseline, seed 42
+\end{tabular}
 \end{frame}
 
 \begin{frame}{From property to measurement}

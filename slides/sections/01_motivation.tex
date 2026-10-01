@@ -22,10 +22,23 @@ Faithfulness? Stability? Compactness? Human usefulness?
 x \xrightarrow{f} f(x) \xrightarrow{E} e
 \qquad\qquad Q(e,f,x,D,\theta_Q)
 \]
-\begin{itemize}
-  \item $x$: input; $f$: predictive model; $E$: explanation method; $e$: explanation.
-  \item $Q$ is a procedure with data, parameters, and assumptions.
-\end{itemize}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{.48\textwidth}
+\begin{tabular}{@{}ll@{}}
+$x$ & input instance being explained\\
+$D$ & data or background sample\\
+$f$ & predictive model\\
+$f(x)$ & model output for $x$
+\end{tabular}
+\column{.48\textwidth}
+\begin{tabular}{@{}ll@{}}
+$E$ & explanation method\\
+$e$ & explanation produced by $E$\\
+$Q$ & evaluation procedure\\
+$\theta_Q$ & metric/protocol parameters
+\end{tabular}
+\end{columns}
 \centering\medskip We evaluate an explanation under a protocol, not in isolation.
 \end{frame}
 

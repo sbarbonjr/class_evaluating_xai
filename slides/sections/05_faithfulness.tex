@@ -1,4 +1,7 @@
 \begin{frame}{Faithfulness: perturb important features}
+\PerspectiveTag{\ContentIcon}{Content}\hfill Correctness / faithfulness
+
+\vspace{.4em}
 Let $a=E(f,x)$, where $a_i$ is feature importance. A perturbation-based test asks whether changing features with large $|a_i|$ changes $f(x)$.
 \[
 \Delta_i=f(x)-f(x_{\setminus i})
@@ -7,6 +10,9 @@ The replacement rule is part of the metric.
 \end{frame}
 
 \begin{frame}{Faithfulness correlation}
+\PerspectiveTag{\ContentIcon}{Content}\hfill Correctness / faithfulness
+
+\vspace{.4em}
 \[
 \operatorname{FC}(x)=\operatorname{corr}_{S}\left(\sum_{i\in S}a_i,\; f(x)-f(x_{\setminus S})\right)
 \]
@@ -28,6 +34,9 @@ For a score-preserving output and a fixed deletion rule, lower deletion AUC or h
 \end{frame}
 
 \begin{frame}{Comprehensiveness and sufficiency}
+\PerspectiveTag{\ContentIcon}{Content}\hfill Completeness
+
+\vspace{.4em}
 \[
 \mathrm{Comp}(x,S)=f(x)-f(x_{\setminus S})\qquad
 \mathrm{Suff}(x,S)=|f(x)-f(x_S)|
@@ -36,10 +45,13 @@ For a score-preserving output and a fixed deletion rule, lower deletion AUC or h
   \item Remove selected features: does the score change? Higher drop is generally preferred.
   \item Keep selected features: does the score remain? Smaller difference is generally preferred.
 \end{itemize}
-\centering\includegraphics[width=.7\linewidth,height=.35\textheight,keepaspectratio]{comprehensiveness_sufficiency.pdf}
+\centering\includegraphics[width=.66\linewidth,height=.3\textheight,keepaspectratio]{comprehensiveness_sufficiency.pdf}
 \end{frame}
 
 \begin{frame}{Infidelity}
+\PerspectiveTag{\ContentIcon}{Content}\hfill Correctness / faithfulness
+
+\vspace{.4em}
 \[
 \operatorname{Infid}(E,f,x)=\mathbb{E}_{I}\left[(I^TE(f,x)-(f(x)-f(x-I)))^2\right]
 \]

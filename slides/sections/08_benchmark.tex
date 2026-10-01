@@ -9,16 +9,23 @@ Designed for a short class run, not state-of-the-art comparison.
 \end{frame}
 
 \begin{frame}{Metric matrix: keep directions visible}
+\PerspectiveTag{\ContentIcon}{Content}\quad Faithfulness, completeness, continuity\hfill
+\PerspectiveTag{\PresentationIcon}{Presentation}\quad Compactness
+
+\vspace{.4em}
 \begin{center}\small
 Deletion AUC $\downarrow$\quad Faithfulness correlation $\uparrow$\\
 Comprehensiveness $\uparrow$\quad Sufficiency $\downarrow$\\
 Max-sensitivity $\downarrow$\quad Gini sparsity: descriptive only
 \end{center}
 The table and plots below are computed from per-instance benchmark outputs. Column scaling is for visual comparison, not a common utility score.
-\centering\includegraphics[width=.9\linewidth,height=.48\textheight,keepaspectratio]{benchmark_heatmap.pdf}
+\centering\includegraphics[width=.86\linewidth,height=.43\textheight,keepaspectratio]{benchmark_heatmap.pdf}
 \end{frame}
 
 \begin{frame}{Include negative controls}
+\PerspectiveTag{\ContentIcon}{Content}\hfill Correctness / faithfulness
+
+\vspace{.4em}
 Random feature rankings and model randomization ask whether the protocol can reject explanations that should not earn high faithfulness.
 \medskip
 
@@ -36,10 +43,17 @@ Ranks and correlations describe this benchmark's models, samples, and protocol. 
 
 \begin{frame}{Multi-objective view}
 \centering\includegraphics[width=.72\linewidth,height=.7\textheight,keepaspectratio]{pareto_xai.pdf}
-Different methods may trade off faithfulness, stability, and compactness. Avoid aggregation until the application defines a utility.
+
+\PerspectiveTag{\ContentIcon}{Content}\quad faithfulness, stability\hspace{1.4em}
+\PerspectiveTag{\PresentationIcon}{Presentation}\quad compactness
+
+Avoid aggregation until the application defines a utility.
 \end{frame}
 
 \begin{frame}{Discussion}
+\PerspectiveLegend
+
+\vspace{.4em}
 \begin{itemize}
   \item Better deletion AUC but worse stability: which method is better?
   \item If deletion is out of distribution, what did the score test?

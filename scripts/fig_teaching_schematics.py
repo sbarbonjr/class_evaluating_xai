@@ -68,3 +68,38 @@ for i, label in enumerate(workflow):
     if i < len(workflow) - 1:
         ax.annotate("", xy=(i + 0.61, 0.5), xytext=(i + 0.38, 0.5), arrowprops={"arrowstyle": "->"})
 ax.set(xlim=(-0.5, 5.5), ylim=(0, 1)); ax.axis("off"); save("evaluation_workflow")
+
+fig, ax = plt.subplots(figsize=(10, 4.2))
+colors = ["#e8eff6", "#e9f3f1", "#fff1dc"]
+edges = ["#325374", "#267d75", "#b2771c"]
+columns = [
+    ("Evaluation perspective",
+     "Where evidence comes from",
+     "Functionally grounded\nHuman-grounded\nApplication-grounded"),
+    ("Study design",
+     "How evidence is collected",
+     "Perturbation test\nUser simulation task\nExpert decision study"),
+    ("Quality perspective",
+     "Which claim is tested",
+     "Content\nPresentation\nUser"),
+]
+
+for i, (title, subtitle, examples) in enumerate(columns):
+    x = i * 3.2
+    ax.text(x, 2.85, title, ha="center", va="center", fontsize=13, weight="bold",
+            color=edges[i])
+    ax.text(x, 2.35, subtitle, ha="center", va="center", fontsize=10)
+    ax.text(x, 1.25, examples, ha="center", va="center", fontsize=11, linespacing=1.7,
+            bbox={"boxstyle": "square,pad=0.65", "facecolor": colors[i], "edgecolor": edges[i],
+                  "linewidth": 1.8})
+    if i < len(columns) - 1:
+        ax.annotate("", xy=(x + 2.25, 1.25), xytext=(x + 1.2, 1.25),
+                    arrowprops={"arrowstyle": "->", "linewidth": 1.4, "color": "#687987"})
+
+ax.text(3.2, 0.15,
+        "Example: a human-grounded simulation task can test a Content claim about faithfulness.",
+        ha="center", va="center", fontsize=10.5,
+        bbox={"boxstyle": "square,pad=0.45", "facecolor": "#f5f6f7", "edgecolor": "#687987"})
+ax.set(xlim=(-1.2, 7.6), ylim=(-0.25, 3.25))
+ax.axis("off")
+save("evaluation_axes")

@@ -1,27 +1,34 @@
 \begin{frame}{Co-12: a quality map, not a scorecard}
-\centering\includegraphics[width=.88\linewidth]{co12_structure.pdf}
-\small Based on the Content, Presentation, and User organization in the evaluation literature.\cite{nauta}
+\centering
+\PerspectiveLegend
+
+\vspace{.35em}
+\includegraphics[width=.82\linewidth,height=.63\textheight,keepaspectratio]{co12_structure.pdf}
+
+\small Co-12 is a concrete quality map for the evaluation branch of the XAI landscape.\cite{nauta}
 \end{frame}
 
 \begin{frame}{Co-12: questions to ask}
 \small
-\begin{tabular}{ll}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{.31\linewidth}>{\raggedright\arraybackslash}p{.31\linewidth}>{\raggedright\arraybackslash}p{.31\linewidth}@{}}
 \toprule
-Content & Presentation / User\\
+\PerspectiveTag{\ContentIcon}{Content} &
+\PerspectiveTag{\PresentationIcon}{Presentation} &
+\PerspectiveTag{\UserIcon}{User}\\
 \midrule
-Correctness & Compactness: concise enough?\\
-Completeness & Composition: appropriate form?\\
-Consistency, continuity & Confidence: uncertainty represented?\\
-Contrastivity & Context: useful for this task?\\
-Covariate complexity & Coherence: aligns with domain knowledge?\\
- & Controllability: user can interact?\\
+Correctness / faithfulness & Compactness: concise enough? & Context: useful for this task?\\
+Completeness & Composition: appropriate form? & Coherence: aligns with domain knowledge?\\
+Consistency & Confidence: uncertainty represented? & Controllability: user can interact?\\
+Continuity & & \\
+Contrastivity & & \\
+Covariate complexity & & \\
 \bottomrule
 \end{tabular}
 \end{frame}
 
 \begin{frame}{One property, multiple metrics}
 \begin{center}
-Correctness / faithfulness\\[.5em]
+\PerspectiveTag{\ContentIcon}{Content}\quad Correctness / faithfulness\\[.5em]
 \begin{tabular}{ccc}
 Deletion & Faithfulness correlation & Infidelity\\
 Insertion & Randomization checks & Synthetic / white-box checks
@@ -31,7 +38,8 @@ Different operationalizations expose different assumptions and failure modes.\ci
 \end{frame}
 
 \begin{frame}{Properties can conflict}
-\centering\Large A faithful explanation may be verbose.\\[.6em]
-A compact explanation may omit relevant behavior.\\[.6em]
+\centering\Large
+\PerspectiveTag{\ContentIcon}{Content}: a faithful explanation may be verbose.\\[.6em]
+\PerspectiveTag{\PresentationIcon}{Presentation}: a compact explanation may omit relevant behavior.\\[.6em]
 \normalsize The evaluation objective must state which trade-offs are acceptable.
 \end{frame}
