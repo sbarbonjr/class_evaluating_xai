@@ -19,24 +19,27 @@ Faithfulness? Stability? Compactness? Human usefulness?
 
 \begin{frame}{What is being evaluated?}
 \[
+D_{\mathrm{train}} \xrightarrow{\mathcal{A}} f
+\qquad
 x \xrightarrow{f} f(x) \xrightarrow{E} e
-\qquad\qquad Q(e,f,x,D,\theta_Q)
+\qquad
+Q(e,f,x,D,\theta_Q)
 \]
 \small
 \begin{columns}[T,onlytextwidth]
 \column{.48\textwidth}
 \begin{tabular}{@{}ll@{}}
-$x$ & input instance being explained\\
-$D$ & data or background sample\\
-$f$ & predictive model\\
-$f(x)$ & model output for $x$
+$\mathcal{A}$ & learning algorithm / training recipe\\
+$D_{\mathrm{train}}$ & data used to fit the model\\
+$f$ & trained predictive model\\
+$x$ & input instance being explained
 \end{tabular}
 \column{.48\textwidth}
 \begin{tabular}{@{}ll@{}}
+$f(x)$ & model output for $x$\\
 $E$ & explanation method\\
 $e$ & explanation produced by $E$\\
-$Q$ & evaluation procedure\\
-$\theta_Q$ & metric/protocol parameters
+$Q$ & evaluation procedure
 \end{tabular}
 \end{columns}
 \centering\medskip We evaluate an explanation under a protocol, not in isolation.
