@@ -71,10 +71,30 @@
   \draw[usergold] (1.65,1.16) -- (2.15,1.16);
 }}
 \newcommand{\PerspectiveTag}[2]{\raisebox{-.2ex}{#1}\,\textbf{#2}}
+\newcommand{\xdel}[1]{x^{\mathrm{del}(#1)}}
+\newcommand{\xkeep}[1]{x^{\mathrm{keep}(#1)}}
 \newcommand{\PerspectiveLegend}{%
   \PerspectiveTag{\ContentIcon}{Content}\hspace{1.4em}%
   \PerspectiveTag{\PresentationIcon}{Presentation}\hspace{1.4em}%
   \PerspectiveTag{\UserIcon}{User}%
+}
+\newcommand{\HierarchyHeader}[4]{%
+  {\scriptsize
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{.22\linewidth}>{\raggedright\arraybackslash}p{.29\linewidth}>{\raggedright\arraybackslash}p{.39\linewidth}@{}}
+  \textbf{Perspective:} \PerspectiveTag{#1}{#2} &
+  \textbf{Property:} #3 &
+  \textbf{Question:} #4
+  \end{tabular}}%
+  \vspace{.2em}\hrule\vspace{.4em}%
+}
+\newcommand{\TradeoffHeader}[7]{%
+  {\scriptsize
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{.28\linewidth}>{\raggedright\arraybackslash}p{.28\linewidth}>{\raggedright\arraybackslash}p{.34\linewidth}@{}}
+  \textbf{A:} \PerspectiveTag{#1}{#2}: #3 &
+  \textbf{B:} \PerspectiveTag{#4}{#5}: #6 &
+  \textbf{Relation:} #7
+  \end{tabular}}%
+  \vspace{.2em}\hrule\vspace{.4em}%
 }
 
 \title[Evaluating Explainable AI: From Quality Properties to Metrics]{Evaluating Explainable AI}
@@ -90,8 +110,6 @@
 \input{sections/02_landscape}
 \input{sections/03_vocabulary}
 \input{sections/04_co12}
-\input{sections/05_faithfulness}
-\input{sections/06_robustness_complexity}
 \input{sections/07_human}
 \input{sections/08_benchmark}
 \input{sections/09_takeaways}
@@ -99,4 +117,8 @@
 \bibliographystyle{abbrv}
 \bibliography{references}
 \end{frame}
+\appendix
+\input{sections/05_faithfulness}
+\input{sections/06_robustness_complexity}
+\input{sections/07_human_support}
 \end{document}

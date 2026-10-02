@@ -1,59 +1,28 @@
-\begin{frame}{A reproducible teaching benchmark}
-\begin{itemize}
-  \item Breast Cancer Wisconsin data; training-only standardization.
-  \item Logistic regression, random forest, and MLP; class-1 probability.
-  \item Local replacement attribution; model-specific attribution where available; random control.
-  \item Median baseline; 25 selected test cases; explicit perturbation radius.
-\end{itemize}
-Designed for a short class run, not state-of-the-art comparison.
-\end{frame}
-
-\begin{frame}{Metric matrix: keep directions visible}
-\PerspectiveTag{\ContentIcon}{Content}\quad Faithfulness, completeness, continuity\hfill
-\PerspectiveTag{\PresentationIcon}{Presentation}\quad Compactness
-
-\vspace{.4em}
-\begin{center}\small
-Deletion AUC $\downarrow$\quad Faithfulness correlation $\uparrow$\\
-Comprehensiveness $\uparrow$\quad Sufficiency $\downarrow$\\
-Max-sensitivity $\downarrow$\quad Gini sparsity: descriptive only
-\end{center}
-The table and plots below are computed from per-instance benchmark outputs. Column scaling is for visual comparison, not a common utility score.
-\centering\includegraphics[width=.86\linewidth,height=.43\textheight,keepaspectratio]{benchmark_heatmap.pdf}
-\end{frame}
-
-\begin{frame}{Include negative controls}
-\PerspectiveTag{\ContentIcon}{Content}\hfill Correctness / faithfulness
-
-\vspace{.4em}
-Random feature rankings and model randomization ask whether the protocol can reject explanations that should not earn high faithfulness.
-\medskip
-
-An evaluation without controls can produce precise-looking but uncalibrated scores.
-\end{frame}
-
 \begin{frame}{Metric disagreement}
-\centering\includegraphics[width=.85\linewidth,height=.7\textheight,keepaspectratio]{rank_disagreement.pdf}
+\centering\includegraphics[width=.82\linewidth,height=.58\textheight,keepaspectratio]{rank_disagreement.pdf}
 \end{frame}
 
 \begin{frame}{Metrics do not necessarily agree}
-\centering\includegraphics[width=.78\linewidth,height=.74\textheight,keepaspectratio]{metric_correlation.pdf}
-Ranks and correlations describe this benchmark's models, samples, and protocol. They do not define a universal ordering.
-\end{frame}
-
-\begin{frame}{Multi-objective view}
-\centering\includegraphics[width=.72\linewidth,height=.7\textheight,keepaspectratio]{pareto_xai.pdf}
-
-\PerspectiveTag{\ContentIcon}{Content}\quad faithfulness, stability\hspace{1.4em}
-\PerspectiveTag{\PresentationIcon}{Presentation}\quad compactness
-
-Avoid aggregation until the application defines a utility.
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.66\linewidth}
+\centering
+\includegraphics[width=\linewidth,height=.74\textheight,keepaspectratio]{metric_correlation.pdf}
+\end{column}
+\begin{column}{.30\linewidth}
+\footnotesize
+\textbf{How to read}
+\begin{itemize}
+  \item Each cell compares two metric outputs.
+  \item Strong agreement means similar rankings, not identical meaning.
+  \item Weak or negative agreement flags a trade-off or protocol effect.
+\end{itemize}
+\vspace{.2em}
+\scriptsize This is benchmark-specific evidence, not a universal ordering.
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}{Discussion}
-\PerspectiveLegend
-
-\vspace{.4em}
 \begin{itemize}
   \item Better deletion AUC but worse stability: which method is better?
   \item If deletion is out of distribution, what did the score test?

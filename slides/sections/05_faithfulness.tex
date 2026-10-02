@@ -1,45 +1,68 @@
 \begin{frame}{Faithfulness: perturb important features}
-\PerspectiveTag{\ContentIcon}{Content}\hfill Correctness / faithfulness
-
-\vspace{.4em}
-Let $a=E(f,x)$, where $a_i$ is feature importance. A perturbation-based test asks whether changing features with large $|a_i|$ changes $f(x)$.
+\HierarchyHeader{\ContentIcon}{Content}{Correctness / faithfulness}{Do important attributed features control the model output?}
+Let $a=E(f,x)$, where $a_i$ is feature importance. A perturbation-based test asks whether replacing features with large $|a_i|$ changes $f(x)$.
 \[
-\Delta_i=f(x)-f(x_{\setminus i})
+\Delta_i=f(x)-f(\xdel{i})
 \]
-The replacement rule is part of the metric.
+Here $\xdel{i}$ denotes $x$ with feature $i$ replaced by the chosen baseline. The replacement rule is part of the metric.
 \end{frame}
 
 \begin{frame}{Faithfulness correlation}
-\PerspectiveTag{\ContentIcon}{Content}\hfill Correctness / faithfulness
-
-\vspace{.4em}
+\HierarchyHeader{\ContentIcon}{Content}{Correctness / faithfulness}{Does attribution mass correlate with output change?}
 \[
-\operatorname{FC}(x)=\operatorname{corr}_{S}\left(\sum_{i\in S}a_i,\; f(x)-f(x_{\setminus S})\right)
+\operatorname{FC}(x)=\operatorname{corr}_{S}\left(\sum_{i\in S}a_i,\; f(x)-f(\xdel{S})\right)
 \]
 Positive association is evidence that attribution mass tracks output change under the sampled subsets and replacement protocol.
 \end{frame}
 
 \begin{frame}{Deletion curve}
+\HierarchyHeader{\ContentIcon}{Content}{Correctness / faithfulness}{What happens when top-ranked features are removed first?}
 Rank features by $|a_i|$, then progressively replace the most important ones. A steep score decrease early in the curve is consistent with a useful ranking under this deletion rule.
-\centering\includegraphics[width=.72\linewidth,height=.58\textheight,keepaspectratio]{deletion_curve.pdf}
+\centering\includegraphics[width=.7\linewidth,height=.46\textheight,keepaspectratio]{deletion_curve.pdf}
 \end{frame}
 
 \begin{frame}{Deletion AUC and AOPC}
+\HierarchyHeader{\ContentIcon}{Content}{Correctness / faithfulness}{How do we summarize a deletion trajectory?}
 \[
-\mathrm{AUC}_{del}=\int_0^1 f(x^{(\alpha)})\,d\alpha
+\mathrm{AUC}_{del}=\int_0^1 f(\xdel{\alpha})\,d\alpha
 \qquad
-\mathrm{AOPC}=\frac1K\sum_{k=1}^K[f(x)-f(x^{(k)})]
+\mathrm{AOPC}_{del}=\frac1K\sum_{k=1}^K\left[f(x)-f(\xdel{k})\right]
 \]
-For a score-preserving output and a fixed deletion rule, lower deletion AUC or higher AOPC is generally preferred. Always state direction and target output.
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth]
+\tikzset{axis/.style={draw=black!70,line width=.35pt}, lab/.style={font=\scriptsize,align=center}}
+\begin{scope}[shift={(0,0)}]
+  \node[lab,font=\bfseries\scriptsize] at (1.55,2.15) {$\mathrm{AUC}_{del}$};
+  \draw[axis] (0,0) -- (0,1.75) -- (3.1,1.75);
+  \node[lab,rotate=90] at (-.35,.95) {score};
+  \node[lab] at (1.55,-.28) {features deleted};
+  \fill[contentblue!18] (0,0) -- (0,1.55) .. controls (.7,1.32) and (1.2,.85) .. (1.75,.55)
+    .. controls (2.25,.32) and (2.7,.24) .. (3.05,.2) -- (3.05,0) -- cycle;
+  \draw[contentblue,line width=1pt] (0,1.55) .. controls (.7,1.32) and (1.2,.85) .. (1.75,.55)
+    .. controls (2.25,.32) and (2.7,.24) .. (3.05,.2);
+  \node[lab,contentblue] at (1.65,.55) {area under\\deletion curve};
+\end{scope}
+\begin{scope}[shift={(4.5,0)}]
+  \node[lab,font=\bfseries\scriptsize] at (1.55,2.15) {$\mathrm{AOPC}_{del}$};
+  \draw[axis] (0,0) -- (0,1.75) -- (3.1,1.75);
+  \node[lab,rotate=90] at (-.35,.95) {drop};
+  \node[lab] at (1.55,-.28) {deletion step $k$};
+  \foreach \x/\h in {.35/.25,.8/.55,1.25/.86,1.7/1.08,2.15/1.22,2.6/1.32}
+    \draw[fill=contentblue!35,draw=contentblue!85] (\x,0) rectangle +(0.26,\h);
+  \draw[contentblue,line width=1pt] (.25,1.0) -- (2.95,1.0);
+  \node[lab,contentblue] at (2.25,1.35) {mean\\drop};
+\end{scope}
+\end{tikzpicture}
+
+\vspace{.4em}
+\raggedright\small For a score-preserving output and a fixed deletion rule, lower deletion AUC or higher AOPC is generally preferred. Always state direction and target output.
 \end{frame}
 
 \begin{frame}{Comprehensiveness and sufficiency}
-\PerspectiveTag{\ContentIcon}{Content}\hfill Completeness
-
-\vspace{.4em}
+\HierarchyHeader{\ContentIcon}{Content}{Completeness}{Is the selected evidence enough, and is removing it consequential?}
 \[
-\mathrm{Comp}(x,S)=f(x)-f(x_{\setminus S})\qquad
-\mathrm{Suff}(x,S)=|f(x)-f(x_S)|
+\mathrm{Comp}(x,S)=f(x)-f(\xdel{S})\qquad
+\mathrm{Suff}(x,S)=|f(x)-f(\xkeep{S})|
 \]
 \begin{itemize}
   \item Remove selected features: does the score change? Higher drop is generally preferred.
@@ -49,17 +72,36 @@ For a score-preserving output and a fixed deletion rule, lower deletion AUC or h
 \end{frame}
 
 \begin{frame}{Infidelity}
-\PerspectiveTag{\ContentIcon}{Content}\hfill Correctness / faithfulness
-
-\vspace{.4em}
+\HierarchyHeader{\ContentIcon}{Content}{Correctness / faithfulness}{Does the attribution-predicted change match the real change?}
 \[
-\operatorname{Infid}(E,f,x)=\mathbb{E}_{I}\left[(I^TE(f,x)-(f(x)-f(x-I)))^2\right]
+\operatorname{Infid}(E,f,x)=\mathbb{E}_{\delta}\left[\left(\delta^\top E(f,x)-\left(f(x)-f(x-\delta)\right)\right)^2\right]
 \]
-It compares attribution-predicted change with actual model change. The perturbation distribution $I$ defines what changes are tested.\cite{infidelity}
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth]
+\tikzset{
+  box/.style={draw=black!45,fill=black!3,minimum width=2.1cm,minimum height=.58cm,align=center,font=\scriptsize},
+  lab/.style={font=\scriptsize,align=center},
+  arr/.style={->,draw=black!65,line width=.45pt}
+}
+\node[box] (pert) at (0,1.1) {perturbation\\$\delta$};
+\node[box,fill=contentblue!8] (pred) at (3.0,1.75) {attribution\\prediction\\$\delta^\top E(f,x)$};
+\node[box,fill=contentblue!8] (actual) at (3.0,.45) {model\\change\\$f(x)-f(x-\delta)$};
+\node[box,fill=contentblue!14,minimum width=2.55cm] (gap) at (6.2,1.1) {squared\\mismatch};
+\draw[arr] (pert.east) -- (pred.west);
+\draw[arr] (pert.east) -- (actual.west);
+\draw[arr] (pred.east) -- (gap.west);
+\draw[arr] (actual.east) -- (gap.west);
+\node[lab,contentblue] at (6.2,.25) {small gap $\Rightarrow$ low infidelity};
+\end{tikzpicture}
+
+\vspace{.35em}
+\raggedright\small
+It compares attribution-predicted change with actual model change. The perturbation distribution over $\delta$ defines what changes are tested.\cite{infidelity}
 \end{frame}
 
 \begin{frame}{The perturbation problem}
-\centering\includegraphics[width=.55\linewidth,height=.63\textheight,keepaspectratio]{ood_perturbation.pdf}
+\HierarchyHeader{\ContentIcon}{Content}{Measurement validity}{Does the perturbation still represent a meaningful input?}
+\centering\includegraphics[width=.5\linewidth,height=.45\textheight,keepaspectratio]{ood_perturbation.pdf}
 \begin{itemize}
   \item What does ``feature absence'' mean: zero, mean, median, or conditional sample?
   \item If replacement leaves the data manifold, are we measuring the explanation or model extrapolation?
@@ -67,6 +109,7 @@ It compares attribution-predicted change with actual model change. The perturbat
 \end{frame}
 
 \begin{frame}{Baseline sensitivity is a result}
-\centering\includegraphics[width=.78\linewidth,height=.67\textheight,keepaspectratio]{baseline_sensitivity.pdf}
+\HierarchyHeader{\ContentIcon}{Content}{Measurement validity}{How much does the score depend on the replacement convention?}
+\centering\includegraphics[width=.74\linewidth,height=.55\textheight,keepaspectratio]{baseline_sensitivity.pdf}
 \small Measured on one held-out instance; the curve changes when the replacement convention changes.
 \end{frame}

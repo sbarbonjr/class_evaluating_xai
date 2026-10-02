@@ -1,0 +1,25 @@
+\begin{frame}{Faithful does not imply understandable}
+\TradeoffHeader{\ContentIcon}{Content}{Correctness / faithfulness}{\PresentationIcon}{Presentation}{Compactness / composition}{Model-relative validity and human readability are different claims.}
+\[
+\text{Faithful}\not\Rightarrow\text{Understandable}
+\]
+A technically faithful explanation with a large number of predicates may be unusable for its audience.
+\end{frame}
+
+\begin{frame}{Plausible does not imply faithful}
+\TradeoffHeader{\UserIcon}{User}{Coherence}{\ContentIcon}{Content}{Correctness / faithfulness}{Human plausibility is not evidence that the explanation tracks the model.}
+\[
+\text{Coherent with human knowledge}\not\Rightarrow\text{Correct relative to model}
+\]
+A domain expert may find an explanation plausible even if the model relies on a spurious feature.
+\end{frame}
+
+\begin{frame}{Human-grounded tasks}
+\HierarchyHeader{\UserIcon}{User}{Coherence / context / controllability}{Does the explanation improve a controlled human task?}
+\begin{itemize}
+  \item Predict the model output; detect a model failure.
+  \item Identify influential variables; answer comprehension questions.
+  \item Measure decision time, confidence, and calibration.
+\end{itemize}
+Preference alone is weak evidence: ``Which explanation do you like?'' does not test task performance.
+\end{frame}

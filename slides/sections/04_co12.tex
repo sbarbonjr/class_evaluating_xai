@@ -26,15 +26,100 @@ Covariate complexity & & \\
 \end{tabular}
 \end{frame}
 
-\begin{frame}{One property, multiple metrics}
-\begin{center}
-\PerspectiveTag{\ContentIcon}{Content}\quad Correctness / faithfulness\\[.5em]
-\begin{tabular}{ccc}
-Deletion & Faithfulness correlation & Infidelity\\
-Insertion & Randomization checks & Synthetic / white-box checks
+\begin{frame}
+\centering
+\includegraphics[width=.94\linewidth,height=.82\textheight,keepaspectratio]{images/correctness.png}
+\end{frame}
+
+\begin{frame}
+\centering
+\includegraphics[width=.94\linewidth,height=.82\textheight,keepaspectratio]{images/completness.png}
+\end{frame}
+
+\begin{frame}
+\centering
+\includegraphics[width=.94\linewidth,height=.82\textheight,keepaspectratio]{images/consistency.png}
+\end{frame}
+
+\begin{frame}
+\centering
+\includegraphics[width=.94\linewidth,height=.82\textheight,keepaspectratio]{images/continuity.png}
+\end{frame}
+
+\begin{frame}
+\centering
+\includegraphics[width=.94\linewidth,height=.82\textheight,keepaspectratio]{images/contrastivity.png}
+\end{frame}
+
+\begin{frame}
+\centering
+\includegraphics[width=.94\linewidth,height=.82\textheight,keepaspectratio]{images/contrastive_vs_counterfactual.png}
+\end{frame}
+
+\begin{frame}
+\centering
+\includegraphics[width=.94\linewidth,height=.82\textheight,keepaspectratio]{images/covariatecomplexity.png}
+\end{frame}
+
+\begin{frame}
+\centering
+\includegraphics[width=.94\linewidth,height=.82\textheight,keepaspectratio]{images/compactness.png}
+\end{frame}
+
+\begin{frame}
+\centering
+\includegraphics[width=.94\linewidth,height=.82\textheight,keepaspectratio]{images/composition.png}
+\end{frame}
+
+\begin{frame}
+\centering
+\includegraphics[width=.94\linewidth,height=.82\textheight,keepaspectratio]{images/confidence.png}
+\end{frame}
+
+\begin{frame}
+\centering
+\includegraphics[width=.94\linewidth,height=.82\textheight,keepaspectratio]{images/context.png}
+\end{frame}
+
+\begin{frame}
+\centering
+\includegraphics[width=.94\linewidth,height=.82\textheight,keepaspectratio]{images/coherence.png}
+\end{frame}
+
+\begin{frame}
+\centering
+\includegraphics[width=.94\linewidth,height=.82\textheight,keepaspectratio]{images/controllability.png}
+\end{frame}
+
+\begin{frame}{One content property, multiple metrics}
+\footnotesize
+\renewcommand{\arraystretch}{1.04}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{.19\linewidth}>{\raggedright\arraybackslash}p{.76\linewidth}@{}}
+\toprule
+Level & Content\\
+\midrule
+Perspective &
+\PerspectiveTag{\ContentIcon}{Content}\hspace{.4em} explanation claim about the model/data relationship\\
+Property &
+\textbf{Correctness / faithfulness}: does $E(f,x)$ track the behavior of $f$ around $x$?\\
+Metric families &
+\textbf{Perturbation response}: deletion, insertion, AOPC\\[-.2em]
+& \textbf{Attribution agreement}: faithfulness correlation, infidelity\\[-.2em]
+& \textbf{Sanity controls}: randomization, synthetic / white-box checks\\
+Protocol choices &
+\textbf{Perturbation}: baseline, masking rule, feature grouping\\[-.2em]
+& \textbf{Measurement}: normalization, number of samples, random seed\\
+\bottomrule
 \end{tabular}
-\end{center}
-Different operationalizations expose different assumptions and failure modes.\cite{quantus}
+\renewcommand{\arraystretch}{1}
+
+\vspace{.55em}
+\scriptsize\raggedright Same property, different operationalizations: each metric exposes different assumptions and failure modes.\cite{quantus}\par
+\end{frame}
+
+\begin{frame}{Deletion, insertion, and AOPC}
+\centering
+\resizebox{.98\linewidth}{!}{\input{figures/deletion_insertion_aopc.tex}}
 \end{frame}
 
 \begin{frame}{Properties can conflict}

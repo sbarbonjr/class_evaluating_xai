@@ -1,7 +1,5 @@
 \begin{frame}{Consistency is not continuity}
-\PerspectiveTag{\ContentIcon}{Content}\hfill Consistency and continuity
-
-\vspace{.4em}
+\HierarchyHeader{\ContentIcon}{Content}{Consistency / continuity}{Are we testing repeatability or local stability?}
 \begin{description}
   \item[Consistency] Equivalent input/model conditions yield equivalent explanations.
   \item[Continuity] Similar inputs with similar predictions yield similar explanations.
@@ -10,31 +8,25 @@ Repeated seeds and equivalent implementations probe consistency; nearby inputs p
 \end{frame}
 
 \begin{frame}{Max-sensitivity}
-\PerspectiveTag{\ContentIcon}{Content}\hfill Continuity
-
-\vspace{.4em}
+\HierarchyHeader{\ContentIcon}{Content}{Continuity}{How much can the explanation change in a small neighborhood?}
 \[
 \mathrm{Sens}_{max}=\max_{\|x'-x\|\le r}\|E(f,x)-E(f,x')\|
 \]
 The radius, input norm, explanation distance, and validity of perturbed inputs all matter.
-\centering\includegraphics[width=.32\linewidth,height=.43\textheight,keepaspectratio]{robustness_neighborhood.pdf}
+\centering\includegraphics[width=.3\linewidth,height=.34\textheight,keepaspectratio]{robustness_neighborhood.pdf}
 \end{frame}
 
 \begin{frame}{Compactness is not correctness}
-\PerspectiveTag{\PresentationIcon}{Presentation}\quad Compactness\hfill \PerspectiveTag{\ContentIcon}{Content}\quad Correctness
-
-\vspace{.4em}
+\TradeoffHeader{\PresentationIcon}{Presentation}{Compactness}{\ContentIcon}{Content}{Correctness / faithfulness}{A concise explanation is easier to inspect, not automatically more faithful.}
 \[
 a=[0.91,0.04,0.03,0.01,0.01]\qquad b=[0.21,0.20,0.20,0.20,0.19]
 \]
 \centering Which is easier to inspect? Does that make it more faithful?\\
-\includegraphics[width=.54\linewidth,height=.43\textheight,keepaspectratio]{complexity_examples.pdf}
+\includegraphics[width=.52\linewidth,height=.34\textheight,keepaspectratio]{complexity_examples.pdf}
 \end{frame}
 
 \begin{frame}{Entropy and sparsity}
-\PerspectiveTag{\PresentationIcon}{Presentation}\hfill Compactness
-
-\vspace{.4em}
+\HierarchyHeader{\PresentationIcon}{Presentation}{Compactness}{How concentrated is the attribution representation?}
 Normalize $p_i=|a_i|/\sum_j|a_j|$ and compute
 \[
 H(a)=-\sum_i p_i\log p_i.
@@ -43,6 +35,7 @@ Lower entropy indicates concentration; higher Gini indicates concentration. Neit
 \end{frame}
 
 \begin{frame}{Sanity checks}
-\centering\includegraphics[width=.9\linewidth]{randomization_check.pdf}
+\HierarchyHeader{\ContentIcon}{Content}{Correctness / faithfulness}{Can the protocol reject explanations that should fail?}
+\centering\includegraphics[width=.86\linewidth,height=.42\textheight,keepaspectratio]{randomization_check.pdf}
 If explanations barely change after model parameter randomization, model dependence is questionable. Passing a sanity check is necessary evidence, not proof of correctness.\cite{sanity}
 \end{frame}

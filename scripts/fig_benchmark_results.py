@@ -18,17 +18,28 @@ metrics = ["deletion_auc", "faithfulness_correlation", "comprehensiveness",
            "sufficiency", "max_sensitivity", "entropy_complexity", "gini_sparsity"]
 summary = data.groupby(["model", "explainer"])[metrics].mean()
 
-fig, ax = plt.subplots(figsize=(11, 4.8))
+fig, ax = plt.subplots(figsize=(12, 5.4))
 scaled = summary.copy()
 for column in metrics:
     values = scaled[column]
     span = values.max() - values.min()
     scaled[column] = (values - values.min()) / span if span else 0.5
 im = ax.imshow(scaled.to_numpy(), aspect="auto", cmap="viridis", vmin=0, vmax=1)
-ax.set_xticks(range(len(metrics)), labels=metrics, rotation=35, ha="right")
-ax.set_yticks(range(len(summary)), labels=[f"{m} / {e}" for m, e in summary.index])
-ax.set_title("Benchmark metrics scaled within each column (higher is not uniformly better)")
-fig.colorbar(im, ax=ax, label="Column-wise normalized value")
+ax.set_xticks(range(len(metrics)), labels=metrics, rotation=35, ha="right", fontsize=10)
+ax.set_yticks(range(len(summary)), labels=[f"{m} / {e}" for m, e in summary.index], fontsize=10)
+ax.set_title("Benchmark metrics scaled within each column (higher is not uniformly better)", fontsize=12)
+for row in range(scaled.shape[0]):
+    for col in range(scaled.shape[1]):
+        value = scaled.iloc[row, col]
+        if pd.isna(value):
+            label, color = "n/a", "black"
+        else:
+            label = f"{value:.2f}"
+            color = "white" if value < 0.35 or value > 0.72 else "black"
+        ax.text(col, row, label, ha="center", va="center", color=color, fontsize=10)
+cbar = fig.colorbar(im, ax=ax, label="Column-wise normalized value")
+cbar.ax.tick_params(labelsize=9)
+cbar.set_label("Column-wise normalized value", fontsize=10)
 fig.tight_layout(); fig.savefig(OUT / "benchmark_heatmap.pdf", bbox_inches="tight"); plt.close(fig)
 
 directions = {"deletion_auc": "min", "faithfulness_correlation": "max",
@@ -48,14 +59,18 @@ ax.legend(frameon=False, ncol=2, fontsize=8); ax.set_title("Method order changes
 fig.tight_layout(); fig.savefig(OUT / "rank_disagreement.pdf", bbox_inches="tight"); plt.close(fig)
 
 correlation = data[metrics].corr(method="spearman")
-fig, ax = plt.subplots(figsize=(7.0, 5.8))
+correlation_labels = ["Deletion\nAUC", "Faith.\ncorr.", "Comp.", "Suff.",
+                      "Max\nsens.", "Entropy", "Gini"]
+fig, ax = plt.subplots(figsize=(8.8, 6.6))
 im = ax.imshow(correlation, cmap="coolwarm", vmin=-1, vmax=1)
-ax.set_xticks(range(len(metrics)), labels=metrics, rotation=45, ha="right")
-ax.set_yticks(range(len(metrics)), labels=metrics)
+ax.set_xticks(range(len(metrics)), labels=correlation_labels, fontsize=13)
+ax.set_yticks(range(len(metrics)), labels=correlation_labels, fontsize=13)
 for i in range(len(metrics)):
     for j in range(len(metrics)):
-        ax.text(j, i, f"{correlation.iloc[i, j]:.2f}", ha="center", va="center", fontsize=7)
-fig.colorbar(im, ax=ax, label="Spearman correlation")
+        ax.text(j, i, f"{correlation.iloc[i, j]:.2f}", ha="center", va="center", fontsize=12)
+cbar = fig.colorbar(im, ax=ax)
+cbar.ax.tick_params(labelsize=12)
+cbar.set_label("Spearman correlation", fontsize=13)
 fig.tight_layout(); fig.savefig(OUT / "metric_correlation.pdf", bbox_inches="tight"); plt.close(fig)
 
 pareto = summary.reset_index()
