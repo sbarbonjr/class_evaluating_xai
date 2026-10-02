@@ -1,5 +1,11 @@
 \begin{frame}{Metric disagreement}
-\centering\includegraphics[width=.82\linewidth,height=.58\textheight,keepaspectratio]{rank_disagreement.pdf}
+\centering\includegraphics[width=.96\linewidth,height=.70\textheight,keepaspectratio]{rank_disagreement.pdf}
+
+\vspace{.2em}
+\scriptsize The y-axis is the method rank within each metric; lower rank means more preferred by that metric.
+
+\vspace{.15em}
+\scriptsize \textbf{Model spec.}: uses model internals; \textbf{Local pert.}: perturbs one instance locally; \textbf{Random ctrl.}: non-informative baseline.
 \end{frame}
 
 \begin{frame}{Metrics do not necessarily agree}
@@ -24,9 +30,10 @@
 
 \begin{frame}{Discussion}
 \begin{itemize}
-  \item Better deletion AUC but worse stability: which method is better?
-  \item If deletion is out of distribution, what did the score test?
+  \item A method can score well on faithfulness and poorly on stability.
+  \item Metric disagreement is evidence of a trade-off, not a universal winner.
+  \item If deletion is out of distribution, what did the score actually test?
   \item What control should a benchmark be able to reject?
 \end{itemize}
-Answer by naming the claim and intended use.
+Answer by naming the property, metric, method, and intended use.
 \end{frame}

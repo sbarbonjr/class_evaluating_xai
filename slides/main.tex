@@ -96,6 +96,19 @@
   \end{tabular}}%
   \vspace{.2em}\hrule\vspace{.4em}%
 }
+\newcommand{\SectionTransition}[3]{%
+  \section{#2}%
+  \begin{frame}
+  \vfill
+  \centering
+  {\large #1\par}
+  \vspace{.8em}
+  {\Huge\bfseries #2\par}
+  \vspace{.8em}
+  {\normalsize #3\par}
+  \vfill
+  \end{frame}
+}
 
 \title[Evaluating Explainable AI: From Quality Properties to Metrics]{Evaluating Explainable AI}
 \subtitle{From Quality Properties to Metrics}
@@ -106,19 +119,29 @@
 
 \begin{document}
 \frame{\titlepage}
+\SectionTransition{Part 1}{Motivation}{Why explanation quality needs its own evaluation.}
 \input{sections/01_motivation}
+\SectionTransition{Part 2}{Evaluation Landscape}{What changes across data, models, explanations, and users.}
 \input{sections/02_landscape}
+\SectionTransition{Part 3}{Vocabulary}{From informal claims to measurable properties.}
 \input{sections/03_vocabulary}
+\SectionTransition{Part 4}{Co-12 Quality Map}{A hierarchy for content, presentation, and user-facing properties.}
 \input{sections/04_co12}
 \input{sections/07_human}
+\SectionTransition{Part 5}{Benchmark Evidence}{Why metrics can disagree, even on the same explanations.}
 \input{sections/08_benchmark}
+\SectionTransition{Part 6}{Takeaways}{How to report a defensible XAI evaluation.}
 \input{sections/09_takeaways}
+\SectionTransition{}{References}{Sources used throughout the lecture.}
 \begin{frame}[allowframebreaks]{References}
 \bibliographystyle{abbrv}
 \bibliography{references}
 \end{frame}
 \appendix
+\SectionTransition{Support}{Faithfulness Metrics}{Perturbation, deletion, AOPC, and related evidence.}
 \input{sections/05_faithfulness}
+\SectionTransition{Support}{Robustness and Complexity}{Stability, sensitivity, compactness, and sanity checks.}
 \input{sections/06_robustness_complexity}
+\SectionTransition{Support}{Human-Facing Evidence}{When explanations need user- or task-grounded evaluation.}
 \input{sections/07_human_support}
 \end{document}

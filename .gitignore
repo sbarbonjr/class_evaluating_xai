@@ -13,3 +13,10 @@ slides/*.out
 slides/*.snm
 slides/*.toc
 texput.log
+slides/*.fls
+slides/*.fdb_latexmk
+slides/*.vrb
+slides/*.synctex.gz
+.DS_Store
+slides/*.bbl
+slides/*.blg

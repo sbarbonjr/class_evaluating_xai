@@ -49,11 +49,23 @@ ranks = summary.copy()
 for metric, direction in directions.items():
     ranks[metric] = summary[metric].rank(ascending=(direction == "min"), method="average")
 rank_means = ranks.mean(axis=1).sort_values()
-fig, ax = plt.subplots(figsize=(9, 4.4))
+model_labels = {"LogisticRegression": "LogReg", "RandomForest": "RF", "MLP": "MLP"}
+explainer_labels = {
+    "LocalPerturbation": "Local\npert.",
+    "ModelSpecific": "Model\nspec.",
+    "RandomControl": "Random\nctrl.",
+}
+rank_labels = [
+    f"{model_labels.get(model, model)}\n{explainer_labels.get(explainer, explainer)}"
+    for model, explainer in rank_means.index
+]
+fig, ax = plt.subplots(figsize=(10.2, 4.8))
 for index, metric in enumerate(metrics):
     order = ranks.loc[rank_means.index, metric].to_numpy()
     ax.plot(range(len(order)), order, marker="o", label=metric)
-ax.set_xticks(range(len(rank_means)), [f"{m}\n{e}" for m, e in rank_means.index])
+ax.set_xticks(range(len(rank_means)), rank_labels)
+ax.tick_params(axis="x", labelsize=9, pad=4)
+ax.set_xlabel("Model / explainer", labelpad=8)
 ax.set_ylabel("Rank within metric (1 is preferred)"); ax.invert_yaxis()
 ax.legend(frameon=False, ncol=2, fontsize=8); ax.set_title("Method order changes with the selected property")
 fig.tight_layout(); fig.savefig(OUT / "rank_disagreement.pdf", bbox_inches="tight"); plt.close(fig)

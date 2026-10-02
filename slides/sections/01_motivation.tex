@@ -5,6 +5,87 @@
 Faithfulness? Stability? Compactness? Human usefulness?
 \end{frame}
 
+\begin{frame}{Different explainers, different explanation objects}
+\small
+\centering
+Iris instance, predicted class: \textit{virginica}. Simulated local scores.
+
+\vspace{.8em}
+\begin{columns}[T,onlytextwidth]
+\column{.31\textwidth}
+\centering
+\textbf{SHAP feature rank}
+\vspace{.25em}
+
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[x=1cm,y=.58cm]
+  \node[font=\tiny,anchor=east,align=right] at (1.55,3.5) {petal width};
+  \fill[contentblue!82] (1.7,3.25) rectangle (4.05,3.75);
+  \node[font=\tiny,anchor=west] at (4.12,3.5) {$+0.46$};
+  \node[font=\tiny,anchor=east,align=right] at (1.55,2.5) {petal length};
+  \fill[contentblue!64] (1.7,2.25) rectangle (3.44,2.75);
+  \node[font=\tiny,anchor=west] at (3.51,2.5) {$+0.34$};
+  \node[font=\tiny,anchor=east,align=right] at (1.55,1.5) {sepal length};
+  \fill[contentblue!42] (1.7,1.25) rectangle (2.36,1.75);
+  \node[font=\tiny,anchor=west] at (2.43,1.5) {$+0.13$};
+  \node[font=\tiny,anchor=east,align=right] at (1.55,.5) {sepal width};
+  \fill[contentblue!25] (1.7,.25) rectangle (2.06,.75);
+  \node[font=\tiny,anchor=west] at (2.13,.5) {$-0.07$};
+\end{tikzpicture}
+}
+
+\column{.32\textwidth}
+\centering
+\textbf{LIME local rule rank}
+\vspace{.25em}
+
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[x=1cm,y=.58cm]
+  \node[font=\tiny,anchor=east,align=right] at (1.85,3.5) {petal length\\$>4.8$};
+  \fill[presentationteal!82] (2.0,3.25) rectangle (4.14,3.75);
+  \node[font=\tiny,anchor=west] at (4.21,3.5) {$+0.42$};
+  \node[font=\tiny,anchor=east,align=right] at (1.85,2.5) {petal width\\$>1.7$};
+  \fill[presentationteal!64] (2.0,2.25) rectangle (3.58,2.75);
+  \node[font=\tiny,anchor=west] at (3.65,2.5) {$+0.31$};
+  \node[font=\tiny,anchor=east,align=right] at (1.85,1.5) {sepal width\\$\leq3.0$};
+  \fill[presentationteal!38] (2.0,1.25) rectangle (2.61,1.75);
+  \node[font=\tiny,anchor=west] at (2.68,1.5) {$-0.12$};
+  \node[font=\tiny,anchor=east,align=right] at (1.85,.5) {sepal length\\$>6.0$};
+  \fill[presentationteal!25] (2.0,.25) rectangle (2.41,.75);
+  \node[font=\tiny,anchor=west] at (2.48,.5) {$+0.08$};
+\end{tikzpicture}
+}
+
+\column{.35\textwidth}
+\centering
+\textbf{DPG LRC predicate rank}
+\vspace{.25em}
+
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[x=1cm,y=.58cm]
+  \node[font=\tiny,anchor=east,align=right] at (2.18,3.5) {$p_1$: petal width\\$>1.75$};
+  \fill[usergold!82] (2.33,3.25) rectangle (4.88,3.75);
+  \node[font=\tiny,anchor=west] at (4.95,3.5) {$0.51$};
+  \node[font=\tiny,anchor=east,align=right] at (2.18,2.5) {$p_2$: petal length\\$>4.95$};
+  \fill[usergold!64] (2.33,2.25) rectangle (3.98,2.75);
+  \node[font=\tiny,anchor=west] at (4.05,2.5) {$0.33$};
+  \node[font=\tiny,anchor=east,align=right] at (2.18,1.5) {$p_3$: sepal length\\$>6.1$};
+  \fill[usergold!40] (2.33,1.25) rectangle (2.93,1.75);
+  \node[font=\tiny,anchor=west] at (3.00,1.5) {$0.12$};
+  \node[font=\tiny,anchor=east,align=right] at (2.18,.5) {$p_4$: sepal width\\$\leq3.1$};
+  \fill[usergold!25] (2.33,.25) rectangle (2.53,.75);
+  \node[font=\tiny,anchor=west] at (2.60,.5) {$0.04$};
+\end{tikzpicture}
+}
+\end{columns}
+
+\vspace{.5em}
+\scriptsize The ranking object changes: feature attribution, local linear condition, or graph predicate contribution.
+
+\vspace{.25em}
+\tiny References: SHAP~\cite{shap}; LIME~\cite{lime}; DPG~\cite{dpg}.
+\end{frame}
+
 \begin{frame}{Predictive performance is not explanation quality}
 \[
 \text{Does } f \text{ predict correctly?}
@@ -39,7 +120,8 @@ $x$ & input instance being explained
 $f(x)$ & model output for $x$\\
 $E$ & explanation method\\
 $e$ & explanation produced by $E$\\
-$Q$ & evaluation procedure
+$Q$ & evaluation procedure\\
+$\theta_Q$ & metric/protocol parameters
 \end{tabular}
 \end{columns}
 \centering\medskip We evaluate an explanation under a protocol, not in isolation.
